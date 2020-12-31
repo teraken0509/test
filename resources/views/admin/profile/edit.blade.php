@@ -28,8 +28,8 @@
                     <div class="form-group row">
                         <label class="col-md-2">性別</label>
                         <div class="col-md-10">
-                            <input type="radio" name="gender" value="男性">男性
-                            <input type="radio" name="gender" value="女性">女性
+                            <input type="radio" name="gender" value="男性" {{ $profile_form->gender == "男性" ? 'checked': null }}>男性
+                            <input type="radio" name="gender" value="女性" {{ $profile_form->gender == "女性" ? 'checked': null }}>女性
                         </div>
                     </div>
                     <div class="form-group row">
@@ -48,6 +48,18 @@
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>
+                <div class="row mt-5">
+                    <div class="col-md-4 mx-auto">
+                        <h2>編集履歴</h2>
+                        <ul class="list-group">
+                            @if ($profile_form->histories != NULL)
+                                @foreach ($profile_form->histories as $history)
+                                    <li class="list-group-item">{{ $history->edited_at }}</li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
