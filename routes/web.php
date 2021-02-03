@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'admin'], function(){
+    Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+    Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'Admin\LoginController@login')->name('admin.login');
+    Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
+});
+
 Route::group(['prefix' => 'admin/news', 'middleware' => 'auth'], function() {
     Route::get('create', 'Admin\NewsController@add');
     Route::post('create', 'Admin\NewsController@create');
