@@ -20,6 +20,8 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'Admin\LoginController@login')->name('admin.login');
     Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
+    Route::get('register', 'Admin\RegisterController@showRegistrationForm')->name('admin.register');
+    Route::post('register', 'Admin\RegisterController@register');
 });
 
 Route::group(['prefix' => 'admin/news', 'middleware' => 'auth'], function() {
